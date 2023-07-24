@@ -1,118 +1,291 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import Image from "next/image";
+import { Roboto } from "next/font/google";
+import { AiOutlineRight } from "react-icons/ai";
+import { BsChevronDown } from "react-icons/bs";
+import { useState } from "react";
 
-const inter = Inter({ subsets: ['latin'] })
+const roboto = Roboto({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export default function Home() {
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
+    <main className={`min-h-screen ${roboto.className}`}>
+      <div className="mb-5 lg:mb-0">
+        <Hero />
+      </div>
+      <Overview />
+      <WhyDoWeChooseNativeOperatingSystems />
+    </main>
+  );
+}
+
+const Hero = () => {
+  return (
+    <div
+      style={{
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "50%",
+      }}
+      className="w-full bg-[url(/hero-bg.jpg)] h-96"
     >
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/pages/index.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+      <div className="w-full flex flex-col justify-start items-start space-y-8 py-9 sm:px-5 md:px-10 px-3 lg:px-24">
+        <div className="w-full">
+          <p className="text-[var(--dark)] text-sm flex justify-start items-center space-x-1">
+            <a
+              href="https://www.alibabacloud.com/?spm=a3c0i.17628883.5039522690.1.4544fbcfghgRo0"
+              target="_blank"
+              className="hover:text-[var(--orange)]"
+            >
+              Alibaba Cloud
+            </a>
+            <AiOutlineRight color="#999" />
+            <a
+              target="_blank"
+              href="https://www.alibabacloud.com/product?spm=a3c0i.17628883.5039522690.2.4544fbcfghgRo0"
+              className="hover:text-[var(--orange)]"
+            >
+              Products
+            </a>
+            <AiOutlineRight color="#999" />
+            <a href="" className="hover:text-[var(--orange)]">
+              Alibaba Cloud Linux 2
+            </a>
+          </p>
+        </div>
+        <div className="text-white space-y-7">
+          <h2 className="text-4xl">
+            <span>Alibaba Cloud Linux 2</span>
+          </h2>
+          <p>
+            Alibaba Cloud Linux 2 is a free-to-use, native operating system that
+            provides a stable, reliable,
+            <br className="lg:block hidden" />
+            and high-performance environment for your applications.
+          </p>
+          <div className="space-x-4">
+            <a
+              href="https://account.alibabacloud.com/login/login.htm?spm=a3c0i.17628883.5039522690.4.4544fbcfghgRo0&oauth_callback=https%3A%2F%2Fecs-buy.aliyun.com%2F%3F%26oauth_auto_callback%3Dauto"
+              target="_blank"
+              className="bg-[var(--orange)] hover:bg-[#f09554] px-5 py-2 border-[var(--orange)] border-2"
+            >
+              Use Now
+            </a>
+            <a
+              target="_blank"
+              href="https://www.alibabacloud.com/help/en/elastic-compute-service/latest/alibaba-cloud-linux-overview"
+              className="bg-transparent border-2 px-5 py-2 hover:bg-[white] hover:text-[#1f2326]"
+            >
+              Documentation
+            </a>
+          </div>
         </div>
       </div>
+    </div>
+  );
+};
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+const Overview = () => {
+  const [open, setOpen] = useState<boolean>(false);
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
+  try {
+    window?.addEventListener("blur", () => setOpen(false));
+    document?.addEventListener("blur", () => setOpen(false));
+    document?.addEventListener("scroll", () => setOpen(false));
+
+    document?.addEventListener("click", (e: Event) => {
+      if (
+        (e.target as Element)?.closest("[data-dropdown]") != null ||
+        (e.target as Element)?.closest("[data-dropdown-button]") != null
+      )
+        return;
+
+      setOpen(false);
+    });
+  } catch {}
+
+  const ScrollToTop = () => {
+    try {
+      window?.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    } catch {}
+  };
+  return (
+    <div className="w-full relative -top-[52px]">
+      <div className="w-full hidden lg:flex px-24 sticky-button justify-center items-center">
+        <button
+          className="w-full hover:text-[var(--orange)] bg-[var(--dark-bg)] hover:bg-[#2c3034] text-white py-3"
+          style={{
+            borderTop: "4px solid var(--orange)",
+          }}
+          onClick={() => ScrollToTop()}
         >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+          Overview
+        </button>
 
         <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
+          href="https://www.alibabacloud.com/help/en/elastic-compute-service/latest/alibaba-cloud-linux-overview"
           target="_blank"
-          rel="noopener noreferrer"
+          style={{
+            borderTop: "4px solid #2c3034",
+          }}
+          className="w-full text-center hover:text-[var(--orange)] bg-[#2c3034] text-white py-3"
         >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
+          Documentation
         </a>
       </div>
-    </main>
-  )
-}
+      <div className="bg-[var(--dark-bg)] w-full py-3 lg:py-10 space-y-5">
+        {/* mobile */}
+        <div className="w-full lg:hidden block">
+          <button
+            data-dropdown-button
+            onClick={() => setOpen(!open)}
+            className={`text-center flex sticky-button justify-between hover:text-[var(--orange)] items-center w-full text-white text-base py-2 px-5`}
+          >
+            <p className="w-full text-lg">Overview</p>
+            <BsChevronDown />
+          </button>
+
+          <div
+            data-dropdown
+            className={`bg-[#5f6367] space-y-2 py-3 ${
+              open
+                ? "opacity-1 pointer-events-auto"
+                : "opacity-0 pointer-events-none"
+            }`}
+          >
+            <button
+              onClick={() => ScrollToTop()}
+              className="text-center w-full text-white text-base"
+            >
+              Overview
+            </button>
+            <a
+              target="_blank"
+              href="https://www.alibabacloud.com/help/en/elastic-compute-service/latest/alibaba-cloud-linux-overview"
+              className="text-center w-full text-white text-base"
+            >
+              <button className="w-full">Documentation</button>
+            </a>
+          </div>
+        </div>
+        <p className="text-white lg:w-3/5 pb-10 px-3 md:px-10 lg:px-24">
+          Alibaba Cloud Linux 2 is a next-generation Linux distribution released
+          by Alibaba Cloud. It includes advanced features developed by the Linux
+          community, and provides a stable and reliable environment for
+          applications running on the cloud. Alibaba Cloud Linux 2 is deeply
+          optimized based on the Alibaba Cloud infrastructure to provide the
+          best experience for users. You can install Alibaba Cloud Linux 2 on
+          all types of Alibaba Cloud Elastic Compute Service (ECS) instances,
+          including ECS Bare Metal Instances.
+        </p>
+      </div>
+    </div>
+  );
+};
+
+const WhyDoWeChooseNativeOperatingSystems = () => {
+  return (
+    <div className="w-full">
+      <h2 className="w-full text-center text-3xl px-10">
+        Why do we choose native operating systems
+      </h2>
+      <div className="flex justify-between lg:flex-row flex-col items-start py-14 md:px-10 px-5 lg:px-24">
+        <div className="lg:space-y-5">
+          <div className="flex justify-center lg:flex-row flex-col lg:space-y-0 space-y-3 lg:mb-0 mb-5 items-start">
+            <div className="lg:w-52">
+              <Image
+                src="/icons/security.webp"
+                width={50}
+                height={50}
+                alt="Picture of the author"
+              />
+            </div>
+            <div>
+              <h6 className="text-[#383d42]">
+                Security and Regulation Compliance
+              </h6>
+              <p className="lg:w-11/12 text-[#9b9ea0] text-sm">
+                Alibaba Cloud Linux 2 is a 100% open-source Linux distribution.
+                You are free to download and check the source code of all
+                operating system components, and send any issues or suggestions
+                to our community. Alibaba Cloud will continuously fix
+                vulnerabilities in Alibaba Cloud Linux 2 to improve system
+                security.
+              </p>
+            </div>
+          </div>
+          <div className="flex justify-center lg:flex-row flex-col lg:space-y-0 space-y-3 lg:mb-0 mb-5 items-start">
+            <div className="lg:w-52">
+              <Image
+                src="/icons/customer.webp"
+                width={50}
+                height={50}
+                alt="Picture of the author"
+              />
+            </div>
+            <div className="flex justify-start items-start flex-col">
+              <h6 className="text-[#383d42]">Customer Support Benefits</h6>
+              <p className="lg:w-11/12 text-[#9b9ea0] text-sm">
+                Unlike other free Linux distributions in Alibaba Cloud
+                Marketplace, Alibaba Cloud Linux 2 is developed based on the
+                latest Linux kernel. Alibaba Cloud Linux 2 users can get
+                technical support and services through our ticket system, forum,
+                or GitHub. All these services are free of charge.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="space-y-5">
+          <div className="flex justify-center lg:flex-row flex-col lg:space-y-0 space-y-3 lg:mb-0 mb-5 items-start">
+            <div className="w-60">
+              <Image
+                src="/icons/performance.webp"
+                width={50}
+                height={50}
+                alt="Picture of the author"
+              />
+            </div>
+            <div>
+              <h6 className="text-[#383d42]">
+                Security and Regulation Compliance
+              </h6>
+              <p className="lg:w-11/12 text-[#9b9ea0] text-sm">
+                Alibaba Cloud Linux 2 is a 100% open-source Linux distribution.
+                You are free to download and check the source code of all
+                operating system components, and send any issues or suggestions
+                to our community. Alibaba Cloud will continuously fix
+                vulnerabilities in Alibaba Cloud Linux 2 to improve system
+                security.
+              </p>
+            </div>
+          </div>
+          <div className="flex justify-center lg:flex-row flex-col lg:space-y-0 space-y-3 lg:mb-0 mb-5 items-start">
+            <div className="lg:w-52 flex items-start justify-start">
+              <Image
+                src="/icons/ecosystem.webp"
+                width={50}
+                height={50}
+                alt="Picture of the author"
+              />
+            </div>
+            <div>
+              <h6 className="text-[#383d42]">Customer Support Benefits</h6>
+              <p className="lg:w-11/12 text-[#9b9ea0] text-sm">
+                Unlike other free Linux distributions in Alibaba Cloud
+                Marketplace, Alibaba Cloud Linux 2 is developed based on the
+                latest Linux kernel. Alibaba Cloud Linux 2 users can get
+                technical support and services through our ticket system, forum,
+                or GitHub. All these services are free of charge.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
